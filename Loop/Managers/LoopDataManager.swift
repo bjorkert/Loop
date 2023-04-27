@@ -1719,10 +1719,10 @@ extension LoopDataManager {
 
                 // slidingPartialBolusApplicationFactor calculated based on LoopConstants
                 //    and current glucose and current target range
-                let currentGlucose = glucose.quantity.doubleValue(for: settings.glucoseUnit ?? .milligramsPerDeciliter)
+                let currentGlucose = glucose.quantity.doubleValue(for: .milligramsPerDeciliter)
                 let correctionRangeSchedule = settings.effectiveGlucoseTargetRangeSchedule()
                 let correctionRange = correctionRangeSchedule!.quantityRange(at: now())
-                let lowerBoundTarget = correctionRange.lowerBound.doubleValue(for: settings.glucoseUnit ?? .milligramsPerDeciliter)
+                let lowerBoundTarget = correctionRange.lowerBound.doubleValue(for: .milligramsPerDeciliter)
                 let minGlucoseSlidingScale = LoopConstants.minGlucoseDeltaSlidingScale + lowerBoundTarget
                 let scalingFraction = LoopConstants.scalingNumerator/(LoopConstants.maxGlucoseSlidingScale-minGlucoseSlidingScale)
                 let scalingGlucose = max(currentGlucose - minGlucoseSlidingScale, 0.0)
