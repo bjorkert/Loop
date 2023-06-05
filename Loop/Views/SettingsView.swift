@@ -24,11 +24,11 @@ public struct SettingsView: View {
     @ObservedObject var viewModel: SettingsViewModel
     @ObservedObject var versionUpdateViewModel: VersionUpdateViewModel
 
+    @State private var profilesIsPresented: Bool = false
     @State private var pumpChooserIsPresented: Bool = false
     @State private var cgmChooserIsPresented: Bool = false
     @State private var serviceChooserIsPresented: Bool = false
     @State private var therapySettingsIsPresented: Bool = false
-    @State private var profilesIsPresented: Bool = false
     @State private var deletePumpDataAlertIsPresented = false
     @State private var deleteCGMDataAlertIsPresented = false
 
