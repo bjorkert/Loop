@@ -236,7 +236,7 @@ extension SettingsView {
                                                         sensitivityOverridesEnabled: FeatureFlags.sensitivityOverridesEnabled,
                                                         adultChildInsulinModelSelectionEnabled: FeatureFlags.adultChildInsulinModelSelectionEnabled,
                                                         delegate: self.viewModel.therapySettingsViewModelDelegate))
-                .environmentObject(displayGlucoseUnitObservable)
+                .environmentObject(displayGlucosePreference)
                 .environment(\.dismissAction, self.dismiss)
                 .environment(\.appName, self.appName)
                 .environment(\.chartColorPalette, .primary)
