@@ -62,7 +62,7 @@ final class CarbEntryViewModel: ObservableObject {
         get { date.addingTimeInterval(LoopConstants.maxCarbEntryPastTime) }
     }
     var maximumDate: Date {
-        get { date.addingTimeInterval(LoopConstants.maxCarbEntryFutureTime) }
+        get { date.addingTimeInterval(Preferences.shared.maxCarbEntryFutureTime) }
     }
     
     @Published var foodType = ""

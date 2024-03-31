@@ -51,6 +51,7 @@ public struct SettingsView: View {
             
             case favoriteFoods
             case therapySettings
+            case preferences
         }
     }
     
@@ -84,6 +85,9 @@ public struct SettingsView: View {
                     deviceSettingsSection
                     if FeatureFlags.allowExperimentalFeatures {
                         favoriteFoodsSection
+                    }
+                    if FeatureFlags.allowExperimentalFeatures {
+                        preferencesSection
                     }
                     if (viewModel.pumpManagerSettingsViewModel.isTestingDevice || viewModel.cgmManagerSettingsViewModel.isTestingDevice) && viewModel.showDeleteTestData {
                         deleteDataSection
@@ -157,6 +161,8 @@ public struct SettingsView: View {
                     .environment(\.insulinTintColor, self.insulinTintColor)
                 case .favoriteFoods:
                     FavoriteFoodsView()
+                case .preferences:
+                    PreferencesView(viewModel: PreferencesViewModel(preferencesProvider: Preferences.shared))
                 }
             }
         }
@@ -374,6 +380,16 @@ extension SettingsView {
         }
     }
     
+    private var preferencesSection: some View {
+        Section {
+            LargeButton(action: { sheet = .preferences },
+                        includeArrow: true,
+                        imageView: AnyView(Image(systemName: "gearshape.fill").font(.system(size: 30, weight: .bold))),
+                        label: NSLocalizedString("Preferences", comment: "Title text for button to Preferences"),
+                        descriptiveText: NSLocalizedString("Customize your Loop experience by adjusting additional settings", comment: "Descriptive text for Preferences"))
+        }
+    }
+
     private var cgmChoices: [ActionSheet.Button] {
         var result = viewModel.cgmManagerSettingsViewModel.availableDevices
             .sorted(by: {$0.localizedTitle < $1.localizedTitle})

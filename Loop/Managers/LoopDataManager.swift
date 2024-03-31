@@ -2532,7 +2532,7 @@ extension LoopDataManager: ServicesManagerDelegate {
         }
         
         if let startDate = startDate {
-            let maxStartDate = Date().addingTimeInterval(LoopConstants.maxCarbEntryFutureTime)
+            let maxStartDate = Date().addingTimeInterval(Preferences.shared.maxCarbEntryFutureTime)
             let minStartDate = Date().addingTimeInterval(LoopConstants.maxCarbEntryPastTime)
             guard startDate <= maxStartDate  && startDate >= minStartDate else {
                 throw CarbActionError.invalidStartDate(startDate)
